@@ -146,3 +146,13 @@ j@bind:~$ sudo named-checkzone choo.dev /etc/bind/zones/db.choo.dev
 zone choo.dev/IN: loaded serial 3
 OK
 ```
+
+### Command files
+You can also use files for `nsupdate`
+```bash
+j@bind:~$ cat update.txt 
+update delete *.choo.dev A
+update add *.choo.dev 86400 A 172.16.8.1
+send
+j@bind:~$ sudo nsupdate -l -4 update.txt
+```
